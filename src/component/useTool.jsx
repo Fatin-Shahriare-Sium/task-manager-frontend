@@ -35,7 +35,7 @@ let useTool=(location)=>{
 
    
     useEffect(()=>{
-        fetch('/task',{
+        fetch('https://merntaskma.herokuapp.com/task',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -68,7 +68,7 @@ let useTool=(location)=>{
         
         let forTask=state.task.find(sig=>sig._id==idx)
 
-        fetch(`/task/complete/${idx}`,{
+        fetch(`https://merntaskma.herokuapp.com/task/complete/${idx}`,{
             method:'POST',
             headers:{
                 "Content-Type":"application/json"
@@ -96,7 +96,7 @@ let useTool=(location)=>{
     function handleDelete(e,idx){
        
        
-        fetch(`/task/delete/${idx}`,{
+        fetch(`https://merntaskma.herokuapp.com/task/delete/${idx}`,{
             method:'POST',
             headers:{
                 "Content-Type":"application/json"
@@ -118,7 +118,7 @@ let useTool=(location)=>{
     }
     function handleStar(e,idx){
         let forTask=state.task.find(sig=>sig._id==idx)
-        fetch(`/task/important/${idx}`,{
+        fetch(`https://merntaskma.herokuapp.com/task/important/${idx}`,{
             method:'POST',
             headers:{
                 "Content-Type":"application/json"

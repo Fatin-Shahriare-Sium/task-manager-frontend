@@ -9,7 +9,7 @@ let useProfile=()=>{
     let cookie=localStorage.getItem('__toketasjy42562627')
    let {setAuth}= useAuthencation()
     function sendCreateProfileRequest(username,status,address,bio,pic){
-        fetch('/profile/create',{
+        fetch('https://merntaskma.herokuapp.com/profile/create',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
