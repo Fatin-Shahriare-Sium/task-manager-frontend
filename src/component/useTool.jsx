@@ -1,11 +1,14 @@
-import {useEffect, useReducer } from "react"
+import {useEffect, useReducer, useState } from "react"
 let useTool=(location)=>{
     console.log('use tool');
     let cookie=localStorage.getItem('__toketasjy42562627')
+    let alertx=document.getElementById('alertx')
     let Action={
         TASK_ENTER:'task-enter',
         ERROR_ENTER:'error',
-        SET_LOADING:'loading'
+        SET_LOADING:'loading',
+        SET_RELOAD:'RELOAD'
+    
     }
     
     let reducer=(state,action)=>{
@@ -24,17 +27,25 @@ let useTool=(location)=>{
                 ...state,
                 loading:action.payload
             }
+        }else if(action.type===Action.SET_RELOAD){
+            return{
+                ...state,
+                reload:action.payload
+            }
         }
         return state;
     }
     let [state,dispatch]=useReducer(reducer,{
         task:{},
         error:{},
-        loading:true
+        loading:true,
+        reload:false
+       
     })
 
    
     useEffect(()=>{
+        console.log('useefect reduce preszdfxg');
         fetch('https://merntaskma.herokuapp.com/task',{
             method:'POST',
             headers:{
@@ -61,6 +72,7 @@ let useTool=(location)=>{
             }
             dispatch({type:Action.SET_LOADING,payload:false})
            
+           
         })
     },[state.error])
   
@@ -81,7 +93,7 @@ let useTool=(location)=>{
             })
         }).then(res=>res.json())
         .then(data=>{
-            
+          
             // dispatch({type:Action.SET_LOADING,payload:true})
             // dispatch({type:Action.TASK_ENTER,payload:data.newTask})
             let errorx={
@@ -89,7 +101,7 @@ let useTool=(location)=>{
                 color:data.color
             }
             dispatch({type:Action.ERROR_ENTER,payload:errorx})
-           
+            alertx.style.display='flex'
 
         })
     }
@@ -113,7 +125,8 @@ let useTool=(location)=>{
                 color:data.color
             }
             dispatch({type:Action.ERROR_ENTER,payload:errorx})
-        
+            dispatch({type:Action.SET_RELOAD,payload:true})
+            alertx.style.display='flex'
         })
     }
     function handleStar(e,idx){
@@ -137,9 +150,11 @@ let useTool=(location)=>{
                 color:data.color
             }
             dispatch({type:Action.ERROR_ENTER,payload:errorx})
-           
+            dispatch({type:Action.SET_RELOAD,payload:true})
+            alertx.style.display='flex'
         })
     }
+
 
     return {handleComplete,handleDelete,handleStar,state}
 }
