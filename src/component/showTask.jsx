@@ -11,7 +11,7 @@ import EmptyImportantTask from './emptyImportantTask'
 import Loading from './loading'
 //https://medium.com/how-to-react/create-a-calendar-in-react-js-e48e43ab3a19
 const Showtask = () => {
-   
+   console.log('showtask');
     let location=useLocation()
     let {handleComplete,handleDelete,handleStar,state}= useTool(location)
     

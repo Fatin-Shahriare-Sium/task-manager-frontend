@@ -31,7 +31,7 @@ let useProfile=()=>{
     }
 
     function sendUpdateProfileRequest(username,status,address,bio,pic,profileId){
-        fetch(`/profile/update/${profileId}`,{
+        fetch(`https://merntaskma.herokuapp.com/profile/update/${profileId}`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -60,7 +60,7 @@ let useProfile=()=>{
         let bio=document.getElementById('bio')
         let pic=document.getElementById('pic')
         console.log('useefect call after send profile req');
-        fetch('/profile/check',{
+        fetch('https://merntaskma.herokuapp.com/profile/check',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
