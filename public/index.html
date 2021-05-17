@@ -13,7 +13,7 @@ problems.But,Allah always helps me. -->
     <meta property="og:title" content="Task Manager"/>
     <meta property="og:site_name" content="Task Manager"/>
     <meta property="og:image" content="./title.svg"/>
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
   
     
   </head>
@@ -21,6 +21,15 @@ problems.But,Allah always helps me. -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div id="alert"></div>
+    <script>
+      if('serviceWorker' in navigator){
+        window.addEventListener('load',()=>{
+          navigator.serviceWorker.register('./serviceworker.js')
+          .then(reg=>console.log(`success :${reg.scope}`))
+          .catch(err=>console.log(err))
+        })
+      }
+    </script>
   
   </body>
 </html>
