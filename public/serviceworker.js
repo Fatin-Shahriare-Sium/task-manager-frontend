@@ -1,5 +1,5 @@
 let CACHE_NAME='version-1'
-let urlsToCatch=['index.html','offline.html']
+let urlsToCatch=['/index.html','/offline.html','/static/js/main.chunk.js','/static/js/0.chunk.js','/static/js/bundle.js','/','/manifest.json','/serviceworker.js']
 
 let self=this
 
@@ -19,11 +19,14 @@ self.addEventListener('install',(event)=>{
 self.addEventListener('fetch',(event)=>{
     event.respondWith(
         caches.match(event.request)
-        .then(()=>{
+        .then((result)=>{
+            if(result){
+                return result
+            }
             return fetch(event.request)
-            .catch(()=>{
-                caches.match('offline.html')
-            })
+            // .catch(()=>{
+            //     caches.match('offline.html')
+            // })
         })
     
     
@@ -46,3 +49,20 @@ self.addEventListener('activate',(event)=>{
         ))
     )
 })
+// self.addEventListener('activate', (event) => {
+//     event.waitUntil(
+//         caches.keys().then((cacheNames) => {
+//             return Promise.all(
+//                 cacheNames.map((cache) => {
+//                     if (cache !== CACHE_NAME) {
+//                         return caches.delete(cache); //Deleting the old cache (cache v1)
+//                     }
+//                 })
+//             );
+//         })
+//             .then(function () {
+//                 console.info("Old caches are cleared!");
+//                 return self.clients.claim();
+//             })
+//     );
+// });
