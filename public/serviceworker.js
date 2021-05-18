@@ -1,5 +1,5 @@
 let CACHE_NAME='version-1'
-let urlsToCatch=['/index.html','/offline.html','/static/js/main.chunk.js','/static/js/0.chunk.js','/static/js/bundle.js','/','/manifest.json','/serviceworker.js']
+let urlsToCatch=['/index.html',"/static/media/hero.86c45f18.png","/static/js/2.1f39c55b.chunk.js",'/static/css/main.f78836fa.chunk.css','/static/css/2.65af8127.chunk.css','/offline.html','/static/js/main.chunk.js','/static/js/0.chunk.js','/static/js/bundle.js','/','/manifest.json','/serviceworker.js']
 
 let self=this
 
